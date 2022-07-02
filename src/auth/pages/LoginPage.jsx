@@ -1,10 +1,19 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context';
 
 export const LoginPage = () => {
+
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate('/', {
+    const lastPath = localStorage.getItem('lastPath') || '/';
+    login('Jonathan');
+
+    // navigate('/', {
+    // Devuelve la última página, se puede omitir con el '/' de arriba
+    navigate(lastPath, {
       replace: true,
     });
   }
